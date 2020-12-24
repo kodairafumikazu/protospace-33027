@@ -2,51 +2,46 @@
 
 ## users テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| name     | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
+| Column     | Type   | Options     |
+| --------   | ------ | ----------- |
+| email      | string | null: false |
+| password   | string | null: false |
+| name       | string | null: false |
+| profile    | text   | null: false |
+| occupation | text   | null: false |
+| position   | text   | null: false |
+
 
 ### Association
 
-- has_many :room_users
-- has_many :rooms, through: room_users
-- has_many :messages
+- has_many :comments
+- has_many :prototypes
 
-## rooms テーブル
 
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| name   | string | null: false |
+## comments テーブル
 
-### Association
-
-- has_many :room_users
-- has_many :users, through: room_users
-- has_many :messages
-
-## room_users テーブル
-
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| room   | references | null: false, foreign_key: true |
+| Column    | Type       | Options     |
+| --------- | ---------- | ----------- |
+| text      | text       | null: false |
+| user      | references | ----------- |
+| prototype | references | ----------- |
 
 ### Association
 
-- belongs_to :room
-- belongs_to :user
+- belong_to :users
+- belong_to :prototypes
 
-## messages テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | string     |                                |
-| user    | references | null: false, foreign_key: true |
-| room    | references | null: false, foreign_key: true |
+
+## prototypes テーブル
+
+| Column       | Type       | Options      |
+| ------------ | ---------- | ------------ |
+| title        | string     | null: false  |
+| catch_copy   | text       | null: false  |
+| user         | references | ------------ |
 
 ### Association
 
-- belongs_to :room
-- belongs_to :user
+- has_many :comments
+- belong_to :users
