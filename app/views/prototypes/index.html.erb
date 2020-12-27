@@ -4,11 +4,12 @@
     <% if user_signed_in? %> 
       <div class="greeting"> 
         <%= "こんにちは、" %>
-        <%= link_to "#{current_user.name}さん", new_user_session_path, class: :greeting__link %>
+        <%= link_to "#{current_user.name}さん", root_path, method: :get, class: :greeting__link %>
       </div> 
     <%# // ログインしているときは上記を表示する %>
     <% end %> 
     <div class="card__wrapper">
+      <%= render partial: 'prototype', collection: @prototypes %>
       <%# 投稿機能実装後、部分テンプレートでプロトタイプ投稿一覧を表示する %>
     
     </div>

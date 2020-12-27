@@ -6,6 +6,8 @@ class User < ApplicationRecord
   # has_many :comments
   belongs_to :prototypes
 
+  has_one_attached :image
+
   validates :name, presence: true
   validates :profile, presence: true
   validates :occupation, presence: true

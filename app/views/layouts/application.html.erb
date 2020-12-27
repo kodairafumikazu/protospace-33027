@@ -22,7 +22,9 @@
             <div class="nav__right">
              
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: :nav__logout %>
-              <%= link_to "New Proto", new_user_session_path, class: :nav__btn %>
+              <%# <a class="post" href="/posts/new"> %>
+              <%= link_to "New Proto", new_prototype_path, class: :nav__btn %>
+              <%# </a> %>
               
             </div> 
           <% else %>
