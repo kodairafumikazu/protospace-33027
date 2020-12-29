@@ -4,12 +4,12 @@
       <p class="prototype__hedding">
         <%= "プロトタイプのタイトル"%>
       </p>
-      <%= link_to "by プロトタイプの投稿者", root_path, class: :prototype__user %>
+      <%= link_to "by プロトタイプの投稿者", "/users/#{current_user.id}", class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
       <% if user_signed_in? %>
         <div class="prototype__manage">
-          <%= link_to "編集する", edit_prototype_path, class: :prototype__btn %>
-          <%= link_to "削除する", prototype_path, method: :delete, class: :prototype__btn %>
+          <%= link_to "編集する", prototypes_path, class: :prototype__btn %>
+          <%= link_to "削除する", prototypes_path, method: :delete, class: :prototype__btn %>
         </div>
       <% end %>
       <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
@@ -20,13 +20,13 @@
         <div class="prototype__detail">
           <p class="detail__title">キャッチコピー</p>
           <p class="detail__message">
-            <%#= "プロトタイプのキャッチコピー" %>
+            <%= "プロトタイプのキャッチコピー" %>
           </p>
         </div>
         <div class="prototype__detail">
           <p class="detail__title">コンセプト</p>
           <p class="detail__message">
-            <%#= "プロトタイプのコンセプト" %>
+            <%= "プロトタイプのコンセプト" %>
           </p>
         </div>
       </div>
@@ -47,8 +47,14 @@
         <ul class="comments_lists">
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
             <li class="comments_list">
-              <%= comment.title %>
-              <%= link_to comments.user.name, root_path, class: :comment_user %>
+              <% if @comments %>
+                <% @comments.each do |comment| %>
+                  <p>
+                    <%= comment.title %>
+                    <strong><%= link_to comment.user.name, "/users/#{current_user.id}", class: :comment_user %>:</strong>
+                  </p>
+                <% end %>
+              <% end %>
             </li>
           <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
         </ul>
