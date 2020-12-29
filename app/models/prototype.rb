@@ -1,8 +1,9 @@
 class Prototype < ApplicationRecord
   # devise :database_authenticatable, :registerable
   #        :recoverable, :rememberable, :validatable
-  has_many :users
-  # belong_to :
+  has_many :comments, dependent: :destroy
+  belongs_to :user
+
   has_one_attached :image #:title, :catch_copy, :concept, 
 
   validates :title, presence: true

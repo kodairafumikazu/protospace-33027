@@ -13,7 +13,7 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    @prototype = Prototype.new(prototype_params)
+    @prototype = Prototype.create(prototype_params)
     if @prototype.save
       redirect_to root_path
     else
@@ -43,13 +43,14 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    # @prototype = Prototype.find(params[:id])
+     @comment = Comment.new
+     @comments = @prototype.comments.includes(:user)
   end
 
   private
 
   def prototype_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)#s: [])
+    params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
   end
 
   def set_prototype
