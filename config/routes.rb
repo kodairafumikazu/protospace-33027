@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :comments, only: :create
   end
   resources :users, only: :show
-    #, only: [:index, :new, :create, :destory, :edit, :update, :show] 
-    #resources :messages, only: [:index, :create]
+  #, only: [:index, :new, :create, :destory, :edit, :update, :show] 
+  #resources :messages, only: [:index, :create]
 
   #resources :comments, only: :show
   

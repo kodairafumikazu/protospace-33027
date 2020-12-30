@@ -4,11 +4,11 @@
   <div class="card__body">
     <%# render partial: 'card__body', collection: @cards__body %>
      
-    <%= link_to prototype.title, prototype_path(prototype.id), class: :card__title %>
+    <%= link_to prototype.title, "/users/#{current_user.id}", class: :card__title %>
     <%# image_tag message.image, class: 'message-image' if message.image.attached? %> 
     <p class="card__summary">
       <%= prototype.catch_copy %>
     </p>
-    <%= link_to prototype.user.name, prototype_path(prototype.id), method: :get, class: :card__user %>
+    <%= link_to prototype.user.name, "/users/#{current_user.id}", method: :get, class: :card__user %>
   </div>
 </div>
