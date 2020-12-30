@@ -2,7 +2,7 @@
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
-        <%= "プロトタイプのタイトル"%>
+        <%= link_to "プロトタイプのタイトル", "/users/#{current_user.id}", method: :get, class: :prototype__btn %>
       </p>
       <%= link_to "by プロトタイプの投稿者", "/users/#{current_user.id}", class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
