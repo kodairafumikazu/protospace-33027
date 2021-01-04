@@ -2,14 +2,14 @@
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
-        <%= link_to "#{@prototype.title}", "/users/#{current_user.id}", method: :get, class: :prototype__btn %>
+        <%= @prototype.title %>
       </p>
-      <%= link_to "by #{@prototype.user.name}", "/users/#{current_user.id}", class: :prototype__user %>
+      <%= link_to "by #{@prototype.user.name}", user_path(@prototype.user), class: :prototype__user %> <%#"/users/#{current_user.id}", class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
       <% if user_signed_in? %>
         <div class="prototype__manage">
-          <%= link_to "編集する", "/users/#{current_user.id}", class: :prototype__btn %>
-          <%= link_to "削除する", prototype_path, method: :delete, class: :prototype__btn %>
+          <%= link_to "編集する", edit_prototype_path(@prototype), class: :prototype__btn %> <%#"/users/#{current_user.id}", class: :prototype__btn %>
+          <%= link_to "削除する", prototype_path(@prototype), method: :delete, class: :prototype__btn %>
         </div>
       <% end %>
       <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
@@ -46,16 +46,14 @@
         <%# // ログインしているユーザーには上記を表示する %>
         <ul class="comments_lists">
           <%# 投稿に紐づくコメントを一覧する処理を記述する %>
+        
+          <% @comments.each do |comment| %>
             <li class="comments_list">
-              <% if @comments %>
-                <% @comments.each do |comment| %>
-                  <p>
-                    <%= comment.title %>
-                    <strong><%= link_to comment.user.name, "/users/#{current_user.id}", class: :comment_user %>:</strong>
-                  </p>
-                <% end %>
-              <% end %>
+              <%= comment.title %>
+              <%= link_to "（#{comment.user.name}）", user_path(comment.user), class: :comment_user %>
+                    <%# link_to comment.user.name, "/users/#{current_user.id}", class: :comment_user %>:</strong>
             </li>
+          <% end %>
           <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
         </ul>
       </div>
