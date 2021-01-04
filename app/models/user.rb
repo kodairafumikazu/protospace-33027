@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :prototypes, dependent: :destroy
 
-  has_one_attached :image
+  #has_one_attached :image
 
   validates :name, presence: true
   validates :profile, presence: true

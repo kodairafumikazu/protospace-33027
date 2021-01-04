@@ -1,11 +1,9 @@
 <div class="card">
-  <%# if user_signed_in? %>
-  <%= link_to image_tag prototype.image, class: 'prototype-image' %> <%# if message.image.attached? %>
+  <%= link_to image_tag(prototype.image, class: :card__img ), prototype_path(prototype) %>
+  <%# link_to image_tag prototype.image, class: 'prototype-image' "/users/#{current_user.id}", method: :get, class: :card__title%> <%# if message.image.attached? %>
   <div class="card__body">
-    <%# render partial: 'card__body', collection: @cards__body %>
      
     <%= link_to prototype.title, "/users/#{current_user.id}", method: :get, class: :card__title %>
-    <%# image_tag message.image, class: 'message-image' if message.image.attached? %> 
     <p class="card__summary">
       <%= prototype.catch_copy %>
     </p>

@@ -2,9 +2,9 @@
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
-        <%= link_to "プロトタイプのタイトル", "/users/#{current_user.id}", method: :get, class: :prototype__btn %>
+        <%= link_to "#{@prototype.title}", "/users/#{current_user.id}", method: :get, class: :prototype__btn %>
       </p>
-      <%= link_to "by プロトタイプの投稿者", "/users/#{current_user.id}", class: :prototype__user %>
+      <%= link_to "by #{@prototype.user.name}", "/users/#{current_user.id}", class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
       <% if user_signed_in? %>
         <div class="prototype__manage">
@@ -20,13 +20,13 @@
         <div class="prototype__detail">
           <p class="detail__title">キャッチコピー</p>
           <p class="detail__message">
-            <%= "プロトタイプのキャッチコピー" %>
+            <%= @prototype.catch_copy %>
           </p>
         </div>
         <div class="prototype__detail">
           <p class="detail__title">コンセプト</p>
           <p class="detail__message">
-            <%= "プロトタイプのコンセプト" %>
+            <%= @prototype.concept %>
           </p>
         </div>
       </div>
@@ -39,7 +39,7 @@
               <%= f.text_field :title %>
             </div>
             <div class="actions">
-              <%= f.submit "SEND", class: :form__btn  %>
+              <%= f.submit "送信する", class: :form__btn  %>
             </div>
           <% end %> 
         <% end %> <%# else %>

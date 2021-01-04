@@ -18,9 +18,6 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:title).merge(user_id: current_user.id, prototype_id: params[:prototype_id])
   end
 
-  # def show
-  #   @comments = Comment.create(comment_params)
-  # end
-
+  
 
 end
